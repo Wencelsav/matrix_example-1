@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <assert.h>
 class matrix_t {
 private:
 	float ** elements_;

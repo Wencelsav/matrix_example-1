@@ -140,10 +140,10 @@ TEST_CASE("operation=")
         "2 2 2\n"
         "2 2 2" };
     std::string input1{
-        "3, 3\n"
-        "1 1 1\n"
-        "1 1 1\n"
-        "1 1 1" };
+        "3, 2\n"
+        "1 1 \n"
+        "1 1 \n"
+        "1 1 " };
     
    
     matrix_t matrix,matrix1;
@@ -154,7 +154,7 @@ TEST_CASE("operation=")
     REQUIRE( matrix.collumns() == 3 );
     REQUIRE( matrix1.read( istream1 ) );
     REQUIRE( matrix1.rows() == 3 );
-    REQUIRE( matrix1.collumns() == 3 );
+    REQUIRE( matrix1.collumns() == 2 );
     matrix=matrix1;
     std::ostringstream ostream;
     matrix.write( ostream );
