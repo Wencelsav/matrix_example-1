@@ -257,10 +257,10 @@ TEST_CASE("typetests"){
     
     std::ostringstream ostream;
     matrix.write( ostream );
-    cout<<'\n';
+    std::cout<<'\n';
     matrix1.write(ostream);
 
-    cout<<'\n';
+    std::cout<<'\n';
     matrix2.write(ostream);
     
     REQUIRE( input+'\n'+input+'\n'+input == ostream.str() );
