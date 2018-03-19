@@ -1,5 +1,5 @@
 #include <iostream>
-#include <assert.h>
+
 template <typename T> class matrix_t {
 private:
 	T ** elements_;
