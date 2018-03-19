@@ -1,10 +1,10 @@
 #include "matrix.hpp"
 
-matrix_t::matrix_t() : elements_{ nullptr }, rows_{ 0 }, collumns_{ 0 }
+matrix_t<T>::matrix_t() : elements_{ nullptr }, rows_{ 0 }, collumns_{ 0 }
 {
 }
 
-matrix_t::matrix_t( matrix_t const & other )
+matrix_t<T>::matrix_t( matrix_t const & other )
 {
 	    elements_= new float *[other.rows()];
 	    for (std::size_t i = 0; i < other.rows(); ++i) {
@@ -18,7 +18,7 @@ matrix_t::matrix_t( matrix_t const & other )
             collumns_=other.collumns();
 }
 
-matrix_t & matrix_t::operator =( matrix_t const & other )
+matrix_t & matrix_t<T>::operator =( matrix_t const & other )
 {   
 	if (this!=&other){
            if(elements_!=nullptr){
@@ -40,7 +40,7 @@ matrix_t & matrix_t::operator =( matrix_t const & other )
 	return *this;
 }
 
-matrix_t::~matrix_t()
+matrix_t<T>::~matrix_t()
 {
 	if(elements_!=nullptr){
           for (std::size_t i = 0; i < rows_; ++i) {
@@ -50,17 +50,17 @@ matrix_t::~matrix_t()
         }
 }
 
-std::size_t matrix_t::rows() const
+std::size_t matrix_t<T>::rows() const
 {
     return rows_;
 }
 
-std::size_t matrix_t::collumns() const
+std::size_t matrix_t<T>::collumns() const
 {
     return collumns_;
 }
 
-matrix_t matrix_t::operator +( matrix_t const & other ) const
+matrix_t matrix_t<T>::operator +( matrix_t const & other ) const
 {
         assert(collumns_ == other.collumns() && rows_ == other.rows());
 	matrix_t result;
@@ -79,7 +79,7 @@ matrix_t matrix_t::operator +( matrix_t const & other ) const
 	return result;
 }
 
-matrix_t matrix_t::operator -( matrix_t const & other ) const
+matrix_t matrix_t<T>::operator -( matrix_t const & other ) const
 {
         assert(collumns_ == other.collumns() && rows_ == other.rows());
         matrix_t result;
@@ -95,7 +95,7 @@ matrix_t matrix_t::operator -( matrix_t const & other ) const
 	return result;
 }
 
-matrix_t matrix_t::operator *( matrix_t const & other ) const
+matrix_t matrix_t<T>::operator *( matrix_t const & other ) const
 {
         assert(collumns_ == other.rows());
         matrix_t result;
@@ -116,7 +116,7 @@ matrix_t matrix_t::operator *( matrix_t const & other ) const
 	return result;
 }
 
-matrix_t & matrix_t::operator -=( matrix_t const & other )
+matrix_t & matrix_t<T>::operator -=( matrix_t const & other )
 {  
     assert(collumns_ == other.collumns() && rows_ == other.rows());
 	for (std::size_t i = 0; i < rows_; ++i) {	
@@ -127,7 +127,7 @@ matrix_t & matrix_t::operator -=( matrix_t const & other )
 	return *this;
 }
 
-matrix_t & matrix_t::operator +=( matrix_t const & other )
+matrix_t & matrix_t<T>::operator +=( matrix_t const & other )
 {
 	 assert(collumns_ == other.collumns() && rows_ == other.rows());
 
@@ -144,13 +144,13 @@ matrix_t & matrix_t::operator +=( matrix_t const & other )
 	return *this;
 }
 
-matrix_t & matrix_t::operator *=( matrix_t const & other )
+matrix_t & matrix_t<T>::operator *=( matrix_t const & other )
 {
 	*this=*this * other;
 	return *this;
 }
 
-std::istream & matrix_t::read( std::istream & stream )
+std::istream & matrix_t<T>::read( std::istream & stream )
 {
     std::size_t rows;
     std::size_t collumns;
@@ -197,7 +197,7 @@ std::istream & matrix_t::read( std::istream & stream )
 	return stream;
 }
 
-std::ostream & matrix_t::write( std::ostream & stream ) const
+std::ostream & matrix_t:<T>:write( std::ostream & stream ) const
 {
     stream << rows_ << ", " << collumns_;
     for( std::size_t i = 0; i < rows_; ++i ) {
