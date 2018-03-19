@@ -88,7 +88,9 @@ std::size_t matrix_t<T>::collumns() const
 template <typename T>
 matrix_t<T> matrix_t<T>::operator +( matrix_t const & other ) const
 {
-        assert(collumns_ == other.collumns() && rows_ == other.rows());
+       if(collumns_ != other.collumns() || rows_ != other.rows()){
+            throw "wrong matrixes";
+        }
 	matrix_t result;
 	
 
@@ -125,7 +127,7 @@ matrix_t<T> matrix_t<T>::operator -( matrix_t const & other ) const
 template <typename T>
 matrix_t<T> matrix_t<T>::operator *( matrix_t const & other ) const
 {
-        if(!collumns_ == other.rows()){
+        if(collumns_ != other.rows()){
                throw  "wrong matrixes";
          }
         matrix_t result;

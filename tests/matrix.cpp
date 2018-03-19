@@ -91,8 +91,8 @@ TEST_CASE("operation-")
     REQUIRE( matrix.rows() == 3 );
     REQUIRE( matrix.collumns() == 3 );
     REQUIRE( matrix1.read( istream1 ) );
-    REQUIRE( matrix1.rows() == 2 );
-    REQUIRE( matrix1.collumns() == 2 );
+    REQUIRE( matrix1.rows() == 3 );
+    REQUIRE( matrix1.collumns() == 3 );
     REQUIRE_NOTHROW(matrix=matrix-matrix1); 
     
     std::ostringstream ostream;
