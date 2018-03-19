@@ -1,8 +1,8 @@
 #include <iostream>
 #include <assert.h>
-class matrix_t {
+template <typename T> class matrix_t {
 private:
-	float ** elements_;
+	T ** elements_;
 	std::rows_;
 	std::size_t collumns_;
 public:
