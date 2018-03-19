@@ -107,7 +107,9 @@ matrix_t<T> matrix_t<T>::operator +( matrix_t const & other ) const
 template <typename T>
 matrix_t<T> matrix_t<T>::operator -( matrix_t const & other ) const
 {
-        assert(collumns_ == other.collumns() && rows_ == other.rows());
+        if(collumns_ != other.collumns() || rows_ != other.rows()){
+            throw "wrong matrixes";
+        }
         matrix_t result;
 	result.elements_= new T*[rows_];
 	for (std::size_t i = 0; i < rows_; ++i) {
@@ -123,7 +125,9 @@ matrix_t<T> matrix_t<T>::operator -( matrix_t const & other ) const
 template <typename T>
 matrix_t<T> matrix_t<T>::operator *( matrix_t const & other ) const
 {
-        assert(collumns_ == other.rows());
+        if(!collumns_ == other.rows()){
+               throw  "wrong matrixes";
+         }
         matrix_t result;
 	result.elements_=new T*[rows_];
         for (std::size_t i = 0; i < rows_; i++) {
@@ -144,7 +148,9 @@ matrix_t<T> matrix_t<T>::operator *( matrix_t const & other ) const
 template <typename T>
 matrix_t<T> & matrix_t<T>::operator -=( matrix_t const & other )
 {  
-    assert(collumns_ == other.collumns() && rows_ == other.rows());
+     if(collumns_ != other.collumns() || rows_ != other.rows()){
+            throw "wrong matrixes";
+        }
 	for (std::size_t i = 0; i < rows_; ++i) {	
 	   	for (std::size_t j = 0; j < collumns_; ++j) {
 			elements_[i][j] = elements_[i][j]-other.elements_[i][j];
@@ -155,7 +161,9 @@ matrix_t<T> & matrix_t<T>::operator -=( matrix_t const & other )
 template <typename T>
 matrix_t<T> & matrix_t<T>::operator +=( matrix_t const & other )
 {
-	 assert(collumns_ == other.collumns() && rows_ == other.rows());
+	  if(collumns_ != other.collumns() || rows_ != other.rows()){
+            throw "wrong matrixes";
+        }
 
 	
 
