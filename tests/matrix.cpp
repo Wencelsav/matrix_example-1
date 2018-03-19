@@ -5,7 +5,7 @@
 
 TEST_CASE("creating matrix")
 {
-    matrix_t matrix;
+    matrix_t<int> matrix;
     REQUIRE( matrix.rows() == 0 );
     REQUIRE( matrix.collumns() == 0 );
 }
@@ -18,7 +18,7 @@ TEST_CASE("reading matrix")
         "2 2 2\n"
         "3 3 3" };
    
-    matrix_t matrix;
+    matrix_t<int> matrix;
     std::istringstream istream{ input };
     
     REQUIRE( matrix.read( istream ) );
@@ -49,7 +49,7 @@ TEST_CASE("operation+")
         "3 3 3" };
     
    
-    matrix_t matrix,matrix1;
+    matrix_t<int> matrix,matrix1;
     std::istringstream istream{ input };
      std::istringstream istream1{ input1 };
     REQUIRE( matrix.read( istream ) );
@@ -83,7 +83,7 @@ TEST_CASE("operation-")
         "1 1 1" };
     
    
-    matrix_t matrix,matrix1;
+    matrix_t<int> matrix,matrix1;
     std::istringstream istream{ input };
     std::istringstream istream1{ input1 };
     REQUIRE( matrix.read( istream ) );
@@ -117,7 +117,7 @@ TEST_CASE("operation+=")
         "3 3 3" };
     
    
-    matrix_t matrix,matrix1;
+    matrix_t<int> matrix,matrix1;
     std::istringstream istream{ input };
      std::istringstream istream1{ input1 };
     REQUIRE( matrix.read( istream ) );
@@ -151,7 +151,7 @@ TEST_CASE("operation-=")
         "1 1 1" };
     
    
-    matrix_t matrix,matrix1;
+    matrix_t<int> matrix,matrix1;
     std::istringstream istream{ input };
     std::istringstream istream1{ input1 };
     REQUIRE( matrix.read( istream ) );
@@ -185,7 +185,7 @@ TEST_CASE("operation*")
         "6 6 6" };
     
    
-    matrix_t matrix,matrix1;
+    matrix_t<int> matrix,matrix1;
     std::istringstream istream{ input };
     std::istringstream istream1{ input1 };
     REQUIRE( matrix.read( istream ) );
@@ -214,7 +214,7 @@ TEST_CASE("operation=")
         "1 1 " };
     
    
-    matrix_t matrix,matrix1;
+    matrix_t<int> matrix,matrix1;
     std::istringstream istream{ input };
     std::istringstream istream1{ input1 };
     REQUIRE( matrix.read( istream ) );
