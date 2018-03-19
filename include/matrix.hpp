@@ -3,7 +3,7 @@
 template <typename T> class matrix_t {
 private:
 	T ** elements_;
-	std::rows_;
+	std::size_t rows_;
 	std::size_t collumns_;
 public:
 	matrix_t();
