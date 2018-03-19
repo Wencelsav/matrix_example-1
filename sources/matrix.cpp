@@ -6,9 +6,9 @@ matrix_t<T>::matrix_t() : elements_{ nullptr }, rows_{ 0 }, collumns_{ 0 }
 
 matrix_t<T>::matrix_t( matrix_t const & other )
 {
-	    elements_= new float *[other.rows()];
+	    elements_= new T *[other.rows()];
 	    for (std::size_t i = 0; i < other.rows(); ++i) {
-			elements_[i] = new float[other.collumns()];
+			elements_[i] = new T[other.collumns()];
 			for (std::size_t j = 0; j < other.collumns(); ++j) {
 				elements_[i][j] = other.elements_[i][j];
 			}
@@ -27,9 +27,9 @@ matrix_t & matrix_t<T>::operator =( matrix_t const & other )
 	           }
                delete[] elements_;
             }
-            elements_ = new float *[other.rows()];
+            elements_ = new T *[other.rows()];
 	    for (std::size_t i = 0; i < other.rows(); ++i) {
-			elements_[i] = new float[other.collumns()];
+			elements_[i] = new T[other.collumns()];
 			for (std::size_t j = 0; j < other.collumns(); ++j) {
 				elements_[i][j] = other.elements_[i][j];
 			}
@@ -66,9 +66,9 @@ matrix_t matrix_t<T>::operator +( matrix_t const & other ) const
 	matrix_t result;
 	
 
-	result.elements_= new float *[rows_];
+	result.elements_= new T*[rows_];
 	for (std::size_t i = 0; i < rows_; ++i) {
-		result.elements_[i] = new float[collumns_];
+		result.elements_[i] = new T[collumns_];
 	   	for (std::size_t j = 0; j < collumns_; ++j) {
 			result.elements_[i][j] = elements_[i][j]+other.elements_[i][j];
 	    }
@@ -83,9 +83,9 @@ matrix_t matrix_t<T>::operator -( matrix_t const & other ) const
 {
         assert(collumns_ == other.collumns() && rows_ == other.rows());
         matrix_t result;
-	result.elements_= new float *[rows_];
+	result.elements_= new T*[rows_];
 	for (std::size_t i = 0; i < rows_; ++i) {
-		result.elements_[i] = new float[collumns_];
+		result.elements_[i] = new T[collumns_];
 	   	for (std::size_t j = 0; j < collumns_; ++j) {
 			result.elements_[i][j] = elements_[i][j]-other.elements_[i][j];
 	    }
@@ -99,9 +99,9 @@ matrix_t matrix_t<T>::operator *( matrix_t const & other ) const
 {
         assert(collumns_ == other.rows());
         matrix_t result;
-	result.elements_=new float *[rows_];
+	result.elements_=new T*[rows_];
         for (std::size_t i = 0; i < rows_; i++) {
-        result.elements_[i]=new float[other.collumns()];
+        result.elements_[i]=new T[other.collumns()];
 		for (std::size_t j = 0; j < other.collumns(); j++) {
 			float y = 0;
 			for (std::size_t z = 0; z < collumns_; z++) {
@@ -160,7 +160,7 @@ std::istream & matrix_t<T>::read( std::istream & stream )
     if( stream >> rows && stream >> symbol && symbol == ',' && stream >> collumns ) {
         float ** elements = new float *[ rows ];
         for( std::size_t i = 0; success && i < rows; ++i ) {
-            elements[ i ] = new float[ collumns ];
+            elements[ i ] = new T[ collumns ];
             for( std::size_t j = 0; j < collumns; ++j ) {
                 if( !( stream >> elements[ i ][ j ] ) ) {
                     success = false;
