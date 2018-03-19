@@ -1,9 +1,9 @@
 #include "matrix.hpp"
-
+template <typename T>
 matrix_t<T>::matrix_t() : elements_{ nullptr }, rows_{ 0 }, collumns_{ 0 }
 {
 }
-
+template <typename T>
 matrix_t<T>::matrix_t( matrix_t const & other )
 {
 	    elements_= new T *[other.rows()];
@@ -17,8 +17,8 @@ matrix_t<T>::matrix_t( matrix_t const & other )
 	    rows_ = other.rows();
             collumns_=other.collumns();
 }
-
-matrix_t & matrix_t<T>::operator =( matrix_t const & other )
+template <typename T>
+matrix_t<T> & matrix_t<T>::operator =( matrix_t const & other )
 {   
 	if (this!=&other){
            if(elements_!=nullptr){
@@ -39,7 +39,7 @@ matrix_t & matrix_t<T>::operator =( matrix_t const & other )
         }
 	return *this;
 }
-
+template <typename T>
 matrix_t<T>::~matrix_t()
 {
 	if(elements_!=nullptr){
@@ -49,18 +49,18 @@ matrix_t<T>::~matrix_t()
            delete[] elements_;
         }
 }
-
+template <typename T>
 std::size_t matrix_t<T>::rows() const
 {
     return rows_;
 }
-
+template <typename T>
 std::size_t matrix_t<T>::collumns() const
 {
     return collumns_;
 }
-
-matrix_t matrix_t<T>::operator +( matrix_t const & other ) const
+template <typename T>
+matrix_t<T> matrix_t<T>::operator +( matrix_t const & other ) const
 {
         assert(collumns_ == other.collumns() && rows_ == other.rows());
 	matrix_t result;
@@ -78,8 +78,8 @@ matrix_t matrix_t<T>::operator +( matrix_t const & other ) const
         result.collumns_=collumns_;
 	return result;
 }
-
-matrix_t matrix_t<T>::operator -( matrix_t const & other ) const
+template <typename T>
+matrix_t<T> matrix_t<T>::operator -( matrix_t const & other ) const
 {
         assert(collumns_ == other.collumns() && rows_ == other.rows());
         matrix_t result;
@@ -94,8 +94,8 @@ matrix_t matrix_t<T>::operator -( matrix_t const & other ) const
         result.collumns_=collumns_;
 	return result;
 }
-
-matrix_t matrix_t<T>::operator *( matrix_t const & other ) const
+template <typename T>
+matrix_t<T> matrix_t<T>::operator *( matrix_t const & other ) const
 {
         assert(collumns_ == other.rows());
         matrix_t result;
@@ -116,7 +116,7 @@ matrix_t matrix_t<T>::operator *( matrix_t const & other ) const
 	return result;
 }
 
-matrix_t & matrix_t<T>::operator -=( matrix_t const & other )
+matrix_t<T> & matrix_t<T>::operator -=( matrix_t const & other )
 {  
     assert(collumns_ == other.collumns() && rows_ == other.rows());
 	for (std::size_t i = 0; i < rows_; ++i) {	
@@ -127,7 +127,7 @@ matrix_t & matrix_t<T>::operator -=( matrix_t const & other )
 	return *this;
 }
 
-matrix_t & matrix_t<T>::operator +=( matrix_t const & other )
+matrix_t<T> & matrix_t<T>::operator +=( matrix_t const & other )
 {
 	 assert(collumns_ == other.collumns() && rows_ == other.rows());
 
@@ -144,7 +144,7 @@ matrix_t & matrix_t<T>::operator +=( matrix_t const & other )
 	return *this;
 }
 
-matrix_t & matrix_t<T>::operator *=( matrix_t const & other )
+matrix_t<T> & matrix_t<T>::operator *=( matrix_t const & other )
 {
 	*this=*this * other;
 	return *this;
